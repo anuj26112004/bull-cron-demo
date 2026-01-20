@@ -6,5 +6,8 @@ interface EmailData {
   body: string;
 }
 export const sendEmail = async (emailData: EmailData) => {
-  await emailQueue.add("send-email", emailData);
+  await emailQueue.add("send-email", emailData, {
+    attempts: 3,
+    backoff: 5000,
+  });
 }

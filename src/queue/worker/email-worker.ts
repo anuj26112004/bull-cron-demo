@@ -13,7 +13,8 @@ const emailWorker = new Worker("email-queue", async job => {
   },
   removeOnComplete: {
     count: 0
-  }
+  },
+  
 });
 
 emailWorker.on("completed", job => {

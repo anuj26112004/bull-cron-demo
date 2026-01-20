@@ -11,6 +11,9 @@ export const sendReminderEmails = async () => {
   };
   for (const email of emails) {
     reminderEmailData.to = email;
-    await reminderEmailQueue.add("reminder-email", reminderEmailData);
+    await reminderEmailQueue.add("reminder-email", reminderEmailData, {
+      attempts: 3,
+      backoff: 5000,
+    });
   }
 }
